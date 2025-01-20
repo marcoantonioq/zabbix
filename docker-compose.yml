@@ -1,0 +1,26 @@
+services:
+  zabbix-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: zabbix-server
+    env_file:
+      - .env
+    volumes:
+      - zabbix-config:/etc/zabbix
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "10051:10051"
+      - "8081:80"
+    networks:
+      - zabbix-net
+
+volumes:
+  zabbix-config:
+    name: zabbix_config
+  postgres-data:
+    name: postgres_data
+
+networks:
+  zabbix-net:
+    driver: bridge
