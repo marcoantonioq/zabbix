@@ -11,7 +11,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
     ports:
       - "10051:10051"
-      - "80:80"
+      - "8080:80"
     networks:
       - zabbix-net
     restart: always
